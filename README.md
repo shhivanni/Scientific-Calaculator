@@ -4,38 +4,58 @@ Scientific Calculator
 A modern web-based Scientific Calculator built using HTML, CSS, and JavaScript.
 This calculator supports advanced scientific functions, keyboard shortcuts, calculation history, dark/light theme toggle, and interactive UI components.
 
-Features
+ Features
+ Basic Operations
 
-Basic Operations
 Addition (+)
+
 Subtraction (−)
+
 Multiplication (×)
+
 Division (÷)
+
 Modulus (%)
+
 Power (**)
 
  Scientific Functions
+
 sin(x)
+
 cos(x)
+
 tan(x)
+
 log(x) (base 10)
+
 ln(x) (natural log)
+
 √x (square root)
 
-Exponential operation
+Exponential operations
 
-Smart Features
+ Smart Features
+
 Interactive calculation history
+
 Click history item to reuse expression
+
 Delete individual history entries
+
 Clear entire history
+
 Auto-hide history when empty
+
 Keyboard support
+
 Styled help modal with scrollable instructions
+
 Animated popup system
+
 Dark / Light theme toggle
 
-Keyboard Shortcuts
+ Keyboard Shortcuts
 Key	Action
 0–9	Numbers
 + - * / %	Operators
@@ -49,20 +69,32 @@ l	log()
 n	ln()
 r	√
 **	Power
+ UI Features
 
-UI Features
 Responsive layout
+
 Scrollable history panel
+
 Delete icon per history entry
+
 Confirmation modal before deletion
+
 Smooth animations
+
 Toggleable dark/light mode
+
 Help icon with animated popup instructions
 
-Technologies Used
+ Technologies Used
+
 HTML5
+
 CSS3
+
 JavaScript (Vanilla JS)
+
 DOM Manipulation
+
 Event Handling
+
 Local state management
