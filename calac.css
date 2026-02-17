@@ -1,0 +1,204 @@
+body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            transition: 0.3s;
+        }
+
+        .dark {
+            background: linear-gradient(135deg, #141E30, #243B55);
+            color: white;
+        }
+
+        .light {
+            background: #f4f4f4;
+            color: black;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .calculator {
+            padding: 20px;
+            border-radius: 20px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark .calculator {
+            background: #1f1f2e;
+        }
+
+        .light .calculator {
+            background: white;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        input {
+            width: 100%;
+            height: 60px;
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-align: right;
+            padding-right: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 50px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dark button {
+            background: #2d2d44;
+            color: white;
+        }
+
+        .light button {
+            background: #ddd;
+            color: black;
+        }
+
+        button:hover {
+            background: #c4b7a6;
+            color: black;
+        }
+
+        .history {
+            width: 200px;
+            padding: 15px;
+            border-radius: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-family: "Times New Roman", Times, serif;
+            display: none; 
+        }
+
+        .dark .history {
+            background: #86af49;
+        }
+
+        .light .history {
+            background: c;
+        }
+
+        .theme-toggle {
+            margin-bottom: 10px;
+            text-align: right;
+            font-family: "Times New Roman", Times, serif;
+            
+        }
+        /* help icon */
+.help-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    background:#2d2d44;
+    color: black;
+    padding: 5px 10px;
+    
+    transition: 0.3s;
+}
+
+.help-icon:hover {
+    background:#c4b7a6 ;
+}
+
+/* modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+/* animated popup */
+.modal-content {
+    background:#86af49 ;
+    width: 450px;
+    max-height: 70vh;
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+    animation: popup 0.4s ease;
+    overflow: hidden;
+}
+
+/* scrollable content */
+.instruction-body {
+    max-height: 50vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* close button */
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* animation */
+@keyframes popup {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.history.clear-btn {
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    font-size: 11px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 20px;
+}
+
+.clear-btn:hover {
+    background: darkred;
+}
+

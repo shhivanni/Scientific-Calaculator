@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scientific Calculator</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            transition: 0.3s;
+        }
+
+        .dark {
+            background: linear-gradient(135deg, #141E30, #243B55);
+            color: white;
+        }
+
+        .light {
+            background: #f4f4f4;
+            color: black;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .calculator {
+            padding: 20px;
+            border-radius: 20px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark .calculator {
+            background: #1f1f2e;
+        }
+
+        .light .calculator {
+            background: white;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        input {
+            width: 100%;
+            height: 60px;
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-align: right;
+            padding-right: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 50px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dark button {
+            background: #2d2d44;
+            color: white;
+        }
+
+        .light button {
+            background: #ddd;
+            color: black;
+        }
+
+        button:hover {
+            background: #c4b7a6;
+            color: black;
+        }
+
+        .history {
+            width: 200px;
+            padding: 15px;
+            border-radius: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-family: "Times New Roman", Times, serif;
+            display: none; 
+        }
+
+        .dark .history {
+            background: #86af49;
+        }
+
+        .light .history {
+            background: c;
+        }
+
+        .theme-toggle {
+            margin-bottom: 10px;
+            text-align: right;
+            font-family: "Times New Roman", Times, serif;
+            
+        }
+        /* help icon */
+.help-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    background:#2d2d44;
+    color: black;
+    padding: 5px 10px;
+    
+    transition: 0.3s;
+}
+
+.help-icon:hover {
+    background:#c4b7a6 ;
+}
+
+/* modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+/* animated popup */
+.modal-content {
+    background:#86af49 ;
+    width: 450px;
+    max-height: 70vh;
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+    animation: popup 0.4s ease;
+    overflow: hidden;
+}
+
+/* scrollable content */
+.instruction-body {
+    max-height: 50vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* close button */
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* animation */
+@keyframes popup {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.history.clear-btn {
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    font-size: 11px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 20px;
+}
+
+.clear-btn:hover {
+    background: darkred;
+}
+
+
+
+    </style>
+</head>
+
+<body class="dark">
+
+<div class="container">
+
+
+    <div class="calculator">
+
+         <div class="help-icon" onclick="openInstructions()">❓</div>
+<!-- Help Modal -->
+<div id="instructionModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInstructions()">✖</span>
+        <h4> Calculator Instructions</h4>
+
+        <div class="instruction-body">
+            <h4> Basic Keys</h4>
+            <ul>
+                <li>Numbers: 0 – 9</li>
+                <li>Operators: +  -  *  /  %</li>
+                <li>Enter → Calculate</li>
+                <li>Backspace → Delete last character</li>
+                <li>Escape → Clear screen</li>
+            </ul>
+
+            <h4> Scientific Shortcuts</h4>
+            <ul>
+                <li>s → sin()</li>
+                <li>c → cos()</li>
+                <li>t → tan()</li>
+                <li>l → log()</li>
+                <li>n → ln()</li>
+                <li>r → √ (Square Root)</li>
+                <li>Use ** for power (xʸ)</li>
+            </ul>
+
+            <h4> Extra Features</h4>
+            <ul>
+                <li>Toggle Theme Button → Switch Dark/Light Mode</li>
+                <li>History Panel → View previous calculations</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="theme-toggle">
+            <button onclick="toggleTheme()">Theme</button>
+        </div>
+
+        <div class="title">Scientific Calculator</div>
+        <input type="text" id="display" readonly>
+
+        <div class="buttons">
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button onclick="append('/')">÷</button>
+
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button onclick="append('*')">×</button>
+
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="append('-')">−</button>
+
+            <button onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="append('+')">+</button>
+
+            <button onclick="calculate()">=</button>
+            <button onclick="sqrt()">√</button>
+            <button onclick="sin()">sin</button>
+            <button onclick="cos()">cos</button>
+
+            <button onclick="tan()">tan</button>
+            <button onclick="log()">log</button>
+            <button onclick="ln()">ln</button>
+            <button onclick="append('**')">xʸ</button>
+        </div>
+    </div>
+
+    <div class="history">
+        <h3>History</h3>
+        <ul id="historyList"></ul>
+        <button onclick="clearHistory()" style="font-size:12px; background:#86af49;" class="clear-btn">🗑</button>
+
+    </div>
+    
+
+</div>
+
+<script>
+let historyList = document.getElementById("historyList");
+
+function append(value) {
+    document.getElementById("display").value += value;
+}
+
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
+
+function calculate() {
+    try {
+        let expression = document.getElementById("display").value;
+        let result = eval(expression);
+        addToHistory(expression + " = " + result);
+        document.getElementById("display").value = result;
+    } catch {
+        document.getElementById("display").value = "Error";
+    }
+}
+
+function sqrt() {
+    let value = parseFloat(document.getElementById("display").value);
+    let result = Math.sqrt(value);
+    addToHistory("√" + value + " = " + result);
+    document.getElementById("display").value = result;
+}
+
+function sin() {
+    let value = parseFloat(document.getElementById("display").value);
+    let result = Math.sin(value);
+    addToHistory("sin(" + value + ") = " + result);
+    document.getElementById("display").value = result;
+}
+
+function cos() {
+    let value = parseFloat(document.getElementById("display").value);
+    let result = Math.cos(value);
+    addToHistory("cos(" + value + ") = " + result);
+    document.getElementById("display").value = result;
+}
+
+function tan() {
+    let value = parseFloat(document.getElementById("display").value);
+    let result = Math.tan(value);
+    addToHistory("tan(" + value + ") = " + result);
+    document.getElementById("display").value = result;
+}
+
+function log() {
+    let value = parseFloat(document.getElementById("display").value);
+    let result = Math.log10(value);
+    addToHistory("log(" + value + ") = " + result);
+    document.getElementById("display").value = result;
+}
+
+function ln() {
+    let value = parseFloat(document.getElementById("display").value);
+    let result = Math.log(value);
+    addToHistory("ln(" + value + ") = " + result);
+    document.getElementById("display").value = result;
+}
+
+function addToHistory(text) {
+    let li = document.createElement("li");
+    li.textContent = text;
+    historyList.prepend(li);
+}
+
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+}
+// keyboard support
+document.addEventListener("keydown", function(event) {
+
+    const key = event.key;
+
+    // numbers
+    if (!isNaN(key)) {
+        append(key);
+    }
+
+    // operators
+    else if (key === "+" || key === "-" || key === "*" || key === "/" || key === "%") {
+        append(key);
+    }
+
+    // decimal
+    else if (key === ".") {
+        append(".");
+    }
+
+    // enter = calculate
+    else if (key === "Enter") {
+        event.preventDefault();  // prevent form submit
+        calculate();
+    }
+
+    // backspace
+    else if (key === "Backspace") {
+        let display = document.getElementById("display");
+        display.value = display.value.slice(0, -1);
+    }
+
+    // escape = clear
+    else if (key === "Escape") {
+        clearDisplay();
+    }
+else if (key === "s") {
+    sin();
+}
+else if (key === "c") {
+    cos();
+}
+else if (key === "t") {
+    tan();
+}
+else if (key === "l") {
+    log();
+}
+else if (key === "n") {
+    ln();
+}
+else if (key === "r") {
+    sqrt();
+}
+
+
+});
+function openInstructions() {
+    const modal = document.getElementById("instructionModal");
+    modal.style.display = "flex";
+}
+
+function closeInstructions() {
+    const modal = document.getElementById("instructionModal");
+    modal.style.display = "none";
+}
+
+// close when clicking outside modal
+window.onclick = function(event) {
+    const modal = document.getElementById("instructionModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+let historyOpened = false;   // flag
+
+function addToHistory(text) {
+
+    // show history only once
+    if (!historyOpened) {
+        document.querySelector(".history").style.display = "block";
+        historyOpened = true;
+    }
+
+    let li = document.createElement("li");
+    li.textContent = text;
+    historyList.prepend(li);
+}
+
+function clearHistory() {
+    historyList.innerHTML = "";
+}
+deleteBtn.onclick = function(e) {
+    e.stopPropagation();
+
+    if (confirm("Are you sure you want to delete this entry?")) {
+        li.remove();
+    }
+};
+
+let itemToDelete = null;
+deleteBtn.onclick = function(e) {
+    e.stopPropagation();
+    itemToDelete = li;
+    document.getElementById("deleteModal").style.display = "flex";
+};
+function confirmDelete() {
+    if (itemToDelete) {
+        itemToDelete.remove();
+        itemToDelete = null;
+    }
+    closeDeleteModal();
+}
+
+function closeDeleteModal() {
+    document.getElementById("deleteModal").style.display = "none";
+}
+
+function checkHistoryVisibility() {
+    const historyBox = document.querySelector(".history");
+    const historyItems = document.querySelectorAll("#historyList li");
+
+    if (historyItems.length === 0) {
+        historyBox.style.display = "none";
+        historyOpened = false;   // reset flag
+    }
+}
+function confirmDelete() {
+    if (itemToDelete) {
+        itemToDelete.remove();
+        itemToDelete = null;
+    }
+
+    closeDeleteModal();
+    checkHistoryVisibility();  
+}
+function clearHistory() {
+    historyList.innerHTML = "";
+    checkHistoryVisibility();  
+}
+
+</script>
+
+</body>
+</html>
