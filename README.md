@@ -56,18 +56,31 @@ Animated popup system
 Dark / Light theme toggle
 
  Keyboard Shortcuts
+ 
 Key	Action
+
 0–9	Numbers
+
 + - * / %	Operators
+      
 Enter	Calculate
+
 Backspace	Delete last character
+
 Escape	Clear screen
+
 s	sin()
+
 c	cos()
+
 t	tan()
+
 l	log()
+
 n	ln()
+
 r	√
+
 **	Power
  UI Features
 
