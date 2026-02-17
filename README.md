@@ -1,5 +1,5 @@
 # Scientific-Calaculator
-cientific Calculator
+Scientific Calculator
 
 A modern web-based Scientific Calculator built using HTML, CSS, and JavaScript.
 This calculator supports advanced scientific functions, keyboard shortcuts, calculation history, dark/light theme toggle, and interactive UI components.
